@@ -4,9 +4,9 @@ require 'net/https'
 require 'xmlsimple'
 
 
-$server="mayors24.cityofboston.gov"
+$server="<servername>"
 $port="4443"
-$base_link="/open311/v2/requests.xml?jurisdiction_id=cityofboston.gov&status=opened&service_code=unshoveled-sidewalk-report"
+$base_link="/open311/v2/requests.xml?<params>"
 $rfc822="%a, %d %b %Y %H:%M:%S %Z"
 get '/rss.xml' do
 	http=Net::HTTP.new($server,$port)
@@ -18,8 +18,8 @@ get '/rss.xml' do
 		xml.instruct! :xml, :version => '1.0'
 		xml.rss :version => "2.0" do
 			xml.channel "xmlns:georss"=>"http://www.georss.org/georss" do
-				xml.title "Boston Snow georsss"
-				xml.description "cityofboston open311 unshoveled snow"
+				xml.title "<title>"
+				xml.description "<description>"
 				xml.link "https://#{$server}:#{$port}#{$base_link}"
 				
 				the_hash["request"].each do |ticket|
