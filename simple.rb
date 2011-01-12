@@ -12,10 +12,8 @@ get '/rss.xml' do
 	http=Net::HTTP.new($server,$port)
 	http.use_ssl=true
 	xml=http.get($base_link).body
-	output_rss(XmlSimple.xml_in(xml))
-end
-
-def output_rss(the_hash)
+	the_hash=XmlSimple.xml_in(xml)
+	
 	builder do |xml|
 		xml.instruct! :xml, :version => '1.0'
 		xml.rss :version => "2.0" do
@@ -40,4 +38,5 @@ def output_rss(the_hash)
 			end
 		end
 	end
+	
 end
